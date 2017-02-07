@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TagReplacer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TagReplacer_jar</output-path>
+    <root id="archive" name="TagReplacer.jar">
+      <element id="module-output" name="SimpleCharacterCounter" />
+    </root>
+  </artifact>
+</component>
