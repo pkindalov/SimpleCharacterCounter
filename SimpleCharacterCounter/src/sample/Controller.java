@@ -82,19 +82,21 @@ public class Controller {
         final String textToWriteOnFile = textField.getText();
         final String pathToSaveAndFileName = pathNameNewFile.getText();
         String fileSize = "0";
+        long sizeInMB = 0L;
 //        String regex = "[^\\.]+(?<=\\/)";
-        String regex = "[^\\/]+";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(pathToSaveAndFileName);
+        FileChooser ch = new FileChooser();
+        File selectedFile = ch.showSaveDialog(((Button)actionEvent.getSource()).getScene().getWindow());
+//        Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(pathToSaveAndFileName);
 
 
 
 
-        try(PrintWriter writer = new PrintWriter(pathToSaveAndFileName)) {
+        try(PrintWriter writer = new PrintWriter(selectedFile)) {
 
             for (char c : textToWriteOnFile.toCharArray()) {
                 writer.write(c);
-
+                sizeInMB++;
             }
 
             fileSize = String.valueOf(textToWriteOnFile.length());
@@ -104,10 +106,12 @@ public class Controller {
             lblStatusBar.setText(e.getMessage());
         }
 
-        while (matcher.find()){
-            textField.setText("Saved successfully in file " +matcher.group());
-            lblStatusBar.setText("Saved successfully in file " +matcher.group() + "Size of file " + fileSize + " Bytes");
-        }
+        sizeInMB /= 1000000;
+
+//        while (matcher.find()){
+//            textField.setText("Saved successfully in file " +matcher.group());
+//            lblStatusBar.setText("Saved successfully in file " +matcher.group() + "Size of file " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
+//        }
 
 
 
@@ -164,7 +168,8 @@ public class Controller {
     public void openFile(ActionEvent actionEvent) {
         String input = pathToFile.getText();
         StringBuilder sb = new StringBuilder();
-        long fileSize = 0;
+        long fileSize = 0L;
+        long sizeInMB = 0L;
 
         FileChooser ch = new FileChooser();
         File selectedFile = ch.showOpenDialog(((Button)actionEvent.getSource()).getScene().getWindow());
@@ -209,7 +214,8 @@ public class Controller {
                lblStatusBar.setText(e.getMessage());
             }
 
-            lblStatusBar.setText("Successfully loaded file: " + input + " with size: " + fileSize + " Bytes");
+            sizeInMB = fileSize / 1000000;
+            lblStatusBar.setText("Successfully loaded file: " + input + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
 
 //            while (matcher.find()){
 //                String fileName = matcher.group();
@@ -225,4 +231,7 @@ public class Controller {
 
 
     }
+
+
+
 }
