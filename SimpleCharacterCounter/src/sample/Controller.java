@@ -87,6 +87,7 @@ public class Controller {
 
         while (matcher.find()){
             textField.setText("Saved successfully in file " +matcher.group());
+            lblStatusBar.setText("Saved successfully in file " +matcher.group());
         }
 
 
@@ -101,7 +102,7 @@ public class Controller {
             writer.close();
 
         } catch (FileNotFoundException e) {
-            textField.setText(e.getMessage());
+            lblStatusBar.setText(e.getMessage());
         }
 
 
