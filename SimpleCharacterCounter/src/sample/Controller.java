@@ -2,6 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
@@ -22,6 +23,7 @@ public class Controller {
     public TextArea textField;
     public TextField pathToFile;
     public TextField pathNameNewFile;
+    public Label lblStatusBar;
 
     public void countChars(ActionEvent actionEvent) throws InterruptedException {
 
