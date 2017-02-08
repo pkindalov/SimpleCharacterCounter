@@ -34,7 +34,8 @@ public class Controller {
         Map<Character, Integer> symbols = new HashMap<>();
 
         if(userText.length() == 0){
-            textField.setText("You must enter more than 0 characters");
+            textField.setText("");
+            lblStatusBar.setText("You must enter more than 0 characters");
         }else {
             for (Character character : userText.toCharArray()) {
 
