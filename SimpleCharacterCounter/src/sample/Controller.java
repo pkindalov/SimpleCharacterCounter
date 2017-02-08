@@ -68,10 +68,13 @@ public class Controller {
         String textToCopy = textField.getText();
         content.putString(textToCopy);
         clipboard.setContent(content);
+        lblStatusBar.setText("copy was successfull");
     }
 
     public void resetTxtField(ActionEvent actionEvent) {
+
         textField.clear();
+        lblStatusBar.setText("");
     }
 
     public void writeToFile(ActionEvent actionEvent) {
