@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.stage.FileChooser;
 
 
 import java.io.*;
@@ -80,15 +81,12 @@ public class Controller {
     public void writeToFile(ActionEvent actionEvent) {
         final String textToWriteOnFile = textField.getText();
         final String pathToSaveAndFileName = pathNameNewFile.getText();
+        String fileSize = "0";
 //        String regex = "[^\\.]+(?<=\\/)";
         String regex = "[^\\/]+";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(pathToSaveAndFileName);
 
-        while (matcher.find()){
-            textField.setText("Saved successfully in file " +matcher.group());
-            lblStatusBar.setText("Saved successfully in file " +matcher.group());
-        }
 
 
 
@@ -99,10 +97,16 @@ public class Controller {
 
             }
 
+            fileSize = String.valueOf(textToWriteOnFile.length());
             writer.close();
 
         } catch (FileNotFoundException e) {
             lblStatusBar.setText(e.getMessage());
+        }
+
+        while (matcher.find()){
+            textField.setText("Saved successfully in file " +matcher.group());
+            lblStatusBar.setText("Saved successfully in file " +matcher.group() + "Size of file " + fileSize + " Bytes");
         }
 
 
@@ -117,7 +121,7 @@ public class Controller {
         int howManyTimes = Integer.MIN_VALUE;
 
         if(text.length() <= 1){
-            textField.setText("Too short.Enter more long text");
+            textField.setText("Too short.Enter longer text");
         }else {
             Map<String, Integer> mostFrequentWords = new HashMap<>();
 
@@ -160,21 +164,39 @@ public class Controller {
     public void openFile(ActionEvent actionEvent) {
         String input = pathToFile.getText();
         StringBuilder sb = new StringBuilder();
+        long fileSize = 0;
 
-        if(input.length() == 0){
+        FileChooser ch = new FileChooser();
+        File selectedFile = ch.showOpenDialog(((Button)actionEvent.getSource()).getScene().getWindow());
+
+//        String regex = "[^\\/]+";
+//        Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(selectedFile.toString());
+//        String file = "";
+//
+//        while (matcher.find()){
+//           file = matcher.group();
+//        }
+
+
+
+        if(selectedFile.length() == 0){
             textField.setText("Must enter path and new file fields. Enter full path and full name of file");
             textField.appendText("\n Example: C:/somedirectory/yourfile.txt");
+
         }else {
 
 
-            try(FileInputStream fis = new FileInputStream(input);
+            try(FileInputStream fis = new FileInputStream(selectedFile)
             ) {
 
                 int read = fis.read();
                 while (read >= 0){
                     sb.append(((char)read));
                     read = fis.read();
+                    fileSize++;
                 }
+
 
                 fis.close();
                 textField.setText(sb.toString());
@@ -184,7 +206,17 @@ public class Controller {
 
             }  catch (IOException e) {
                textField.setText(e.getMessage());
+               lblStatusBar.setText(e.getMessage());
             }
+
+            lblStatusBar.setText("Successfully loaded file: " + input + " with size: " + fileSize + " Bytes");
+
+//            while (matcher.find()){
+//                String fileName = matcher.group();
+//                File file = new File(fileName);
+//                lblStatusBar.setText("Saved successfully in file " +matcher.group() + " Size of file " + file.length());
+//            }
+
 
 
         }
