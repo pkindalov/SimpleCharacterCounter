@@ -80,7 +80,7 @@ public class Controller {
 
     public void writeToFile(ActionEvent actionEvent) {
         final String textToWriteOnFile = textField.getText();
-        final String pathToSaveAndFileName = pathNameNewFile.getText();
+//        final String pathToSaveAndFileName = pathNameNewFile.getText();
         String fileSize = "0";
         long sizeInMB = 0L;
 //        String regex = "[^\\.]+(?<=\\/)";
@@ -166,7 +166,7 @@ public class Controller {
     }
 
     public void openFile(ActionEvent actionEvent) {
-        String input = pathToFile.getText();
+//        String input = pathToFile.getText();
         StringBuilder sb = new StringBuilder();
         long fileSize = 0L;
         long sizeInMB = 0L;
@@ -215,7 +215,7 @@ public class Controller {
             }
 
             sizeInMB = fileSize / 1000000;
-            lblStatusBar.setText("Successfully loaded file: " + input + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
+            lblStatusBar.setText("Successfully loaded file: " + selectedFile + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
 
 //            while (matcher.find()){
 //                String fileName = matcher.group();
