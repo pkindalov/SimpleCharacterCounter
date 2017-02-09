@@ -106,7 +106,7 @@ public class Controller {
             lblStatusBar.setText(e.getMessage());
         }
 
-        sizeInMB /= 1000000;
+        sizeInMB /= 1024;
 
 //        while (matcher.find()){
 //            textField.setText("Saved successfully in file " +matcher.group());
@@ -174,6 +174,15 @@ public class Controller {
         FileChooser ch = new FileChooser();
         File selectedFile = ch.showOpenDialog(((Button)actionEvent.getSource()).getScene().getWindow());
 
+        String fileName = selectedFile.toString();
+        String regex = "[^\\/]+";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(fileName);
+
+        while (matcher.find()){
+            fileName = matcher.group();
+        }
+
 //        String regex = "[^\\/]+";
 //        Pattern pattern = Pattern.compile(regex);
 //        Matcher matcher = pattern.matcher(selectedFile.toString());
@@ -214,8 +223,8 @@ public class Controller {
                lblStatusBar.setText(e.getMessage());
             }
 
-            sizeInMB = fileSize / 1000000;
-            lblStatusBar.setText("Successfully loaded file: " + selectedFile + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
+            sizeInMB = fileSize / 1024;
+            lblStatusBar.setText("Successfully loaded file: " + fileName + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
 
 //            while (matcher.find()){
 //                String fileName = matcher.group();
