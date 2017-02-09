@@ -165,6 +165,21 @@ public class Controller {
 
     }
 
+
+    public String catcOnlyFileName(String str){
+        String regex = "[^\\/]+";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+
+        while (matcher.find()){
+            str = matcher.group();
+        }
+
+        return str;
+    }
+
+
+
     public void openFile(ActionEvent actionEvent) {
 //        String input = pathToFile.getText();
         StringBuilder sb = new StringBuilder();
@@ -174,14 +189,8 @@ public class Controller {
         FileChooser ch = new FileChooser();
         File selectedFile = ch.showOpenDialog(((Button)actionEvent.getSource()).getScene().getWindow());
 
-        String fileName = selectedFile.toString();
-        String regex = "[^\\/]+";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(fileName);
+        String fileName = catcOnlyFileName(selectedFile.toString());
 
-        while (matcher.find()){
-            fileName = matcher.group();
-        }
 
 //        String regex = "[^\\/]+";
 //        Pattern pattern = Pattern.compile(regex);
