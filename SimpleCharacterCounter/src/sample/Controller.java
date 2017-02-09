@@ -86,6 +86,7 @@ public class Controller {
 //        String regex = "[^\\.]+(?<=\\/)";
         FileChooser ch = new FileChooser();
         File selectedFile = ch.showSaveDialog(((Button)actionEvent.getSource()).getScene().getWindow());
+        String fileName = catcOnlyFileName(selectedFile.toString());
 //        Pattern pattern = Pattern.compile(regex);
 //        Matcher matcher = pattern.matcher(pathToSaveAndFileName);
 
@@ -107,6 +108,7 @@ public class Controller {
         }
 
         sizeInMB /= 1024;
+        lblStatusBar.setText("Successfully loaded file: " + fileName + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
 
 //        while (matcher.find()){
 //            textField.setText("Saved successfully in file " +matcher.group());
