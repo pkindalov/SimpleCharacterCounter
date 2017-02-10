@@ -11,9 +11,10 @@
       <TextArea fx:id="textField" prefHeight="200.0" prefWidth="600.0" wrapText="true" />
       <Button fx:id="copy" layoutX="249.0" layoutY="259.0" mnemonicParsing="false" onAction="#copyToClipboard" text="Copy" />
       <Button fx:id="btnReset" layoutX="183.0" layoutY="259.0" mnemonicParsing="false" onAction="#resetTxtField" text="Reset" />
-      <Button fx:id="writeFile" layoutX="468.0" layoutY="294.0" mnemonicParsing="false" onAction="#writeToFile" prefHeight="26.0" prefWidth="117.0" text="Save" />
+      <Button fx:id="writeFile" layoutX="468.0" layoutY="294.0" mnemonicParsing="false" onAction="#writeToFile" prefHeight="26.0" prefWidth="117.0" text="Save Append" />
       <Button fx:id="mostUsedWord" layoutX="14.0" layoutY="294.0" mnemonicParsing="false" onAction="#mostUsedWord" prefHeight="26.0" prefWidth="153.0" text="Most Used Word" />
       <Button fx:id="btnOpenFile" layoutX="468.0" layoutY="259.0" mnemonicParsing="false" onAction="#openFile" prefHeight="26.0" prefWidth="117.0" text="Open" />
       <Label fx:id="lblStatusBar" layoutX="14.0" layoutY="208.0" prefHeight="47.0" prefWidth="572.0" wrapText="true" />
+      <Button fx:id="saveWithoutAppend" layoutX="468.0" layoutY="329.0" mnemonicParsing="false" onAction="#saveWithoutAppend" prefHeight="26.0" prefWidth="117.0" text="Save" />
    </children>
 </AnchorPane>
