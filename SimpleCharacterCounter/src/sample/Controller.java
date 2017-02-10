@@ -274,5 +274,18 @@ public class Controller {
     }
 
 
+    public void saveWithoutAppend(ActionEvent actionEvent) {
 
+        final String textToWriteOnFile = textField.getText();
+//        final String pathToSaveAndFileName = pathNameNewFile.getText();
+        String fileSize = "0";
+        long sizeInMB = 0L;
+//        String regex = "[^\\.]+(?<=\\/)";
+        FileChooser ch = new FileChooser();
+        File selectedFile = ch.showSaveDialog(((Button)actionEvent.getSource()).getScene().getWindow());
+        String fileName = catcOnlyFileName(selectedFile.toString());
+
+        writeToFileWithoutAppend(textToWriteOnFile, fileSize, sizeInMB, selectedFile, fileName);
+
+    }
 }
