@@ -91,8 +91,17 @@ public class Controller {
 //        Matcher matcher = pattern.matcher(pathToSaveAndFileName);
 
 
+        appendWriteFile(textToWriteOnFile, fileSize, sizeInMB, selectedFile, fileName);
+
+//        writeToFileWithoutAppend(textToWriteOnFile, fileSize, sizeInMB, selectedFile, fileName);
 
 
+
+
+
+    }
+
+    private void writeToFileWithoutAppend(String textToWriteOnFile, String fileSize, long sizeInMB, File selectedFile, String fileName) {
         try(PrintWriter writer = new PrintWriter(selectedFile)) {
 
             for (char c : textToWriteOnFile.toCharArray()) {
@@ -109,14 +118,26 @@ public class Controller {
 
         sizeInMB /= 1024;
         lblStatusBar.setText("Successfully loaded file: " + fileName + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
+    }
 
-//        while (matcher.find()){
-//            textField.setText("Saved successfully in file " +matcher.group());
-//            lblStatusBar.setText("Saved successfully in file " +matcher.group() + "Size of file " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
-//        }
+    private void appendWriteFile(String textToWriteOnFile, String fileSize, long sizeInMB, File selectedFile, String fileName) {
+        try(FileOutputStream fos = new FileOutputStream(selectedFile, true)) {
 
+            fos.write('\n');
+            for (char c : textToWriteOnFile.toCharArray()) {
+                fos.write(c);
+                sizeInMB++;
+            }
 
+            fileSize = String.valueOf(textToWriteOnFile.length());
+            fos.close();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        sizeInMB /= 1024;
+        lblStatusBar.setText("Successfully loaded file: " + fileName + " with size: " + fileSize + " Bytes" + "(" + sizeInMB + "MB" + ")");
     }
 
     public void mostUsedWord(ActionEvent actionEvent) {
