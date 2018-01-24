@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TagReplacer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/SimpleCharacterCounter/out/artifacts/TagReplacer_jar/TagReplacer.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
